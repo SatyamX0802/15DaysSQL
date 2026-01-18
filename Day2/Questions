@@ -1,0 +1,28 @@
+Day 2 SQL Practice – Job Openings Dataset
+
+Basic SELECT & WHERE
+1. Display all job titles and company names.
+2. Fetch all job postings located in India.
+3. List all jobs that allow work from home.
+4. Show jobs where health insurance is provided.
+5. Retrieve job postings that do not require a degree.
+
+BETWEEN (Range Filtering)
+6. Find jobs with annual salary between 50,000 and 100,000.
+7. List hourly-based jobs where hourly salary is between 20 and 50.
+
+LIKE (Pattern Matching)
+8. Find all jobs with “Data” in the job title.
+9. Display jobs where required skills include SQL.
+10. Fetch companies whose names start with ‘A’.
+
+IN (Multiple Values)
+11. Retrieve jobs located in India, United States, or Remote.
+12. Show job postings from companies Google, Amazon, or Microsoft.
+
+DISTINCT
+13. Display all unique job titles available in January.
+14. List all distinct job locations.
+
+ORDER BY (Sorting)
+15. Display job postings sorted by highest annual salary first.
