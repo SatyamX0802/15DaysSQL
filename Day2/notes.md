@@ -231,5 +231,6 @@ WHERE name LIKE 'S%';
 * **DISTINCT** → Remove duplicates
 * **ORDER BY** → Sort results
 
+---
 
 *End of Day 2 – SQL Data Retrieval and Filtering*
