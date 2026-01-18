@@ -21,7 +21,7 @@ CREATE TABLE janjobopenings (
     job_skills             TEXT
 );
 
-
+-- Insert for sample one row data, testing the format and all.
 INSERT INTO janjobopenings (
     job_title_short,
     job_title,
