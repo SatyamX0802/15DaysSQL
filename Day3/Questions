@@ -1,0 +1,67 @@
+LEVEL 1 - Foundation (Aggregation Basics)
+1. Total job postings
+Count the total number of job postings in the dataset.
+
+2. Jobs with salary information
+Count how many jobs have a non-NULL yearly average salary.
+
+3. Distinct job titles
+Find the number of unique short job titles (job_title_short).
+
+4. Highest & lowest yearly salary
+Find the maximum and minimum salary_year_avg.
+
+5. Average yearly salary
+Calculate the overall average yearly salary.
+
+LEVEL 2 - GROUP BY Mastery
+6. Average salary per job title
+Find the average yearly salary for each job title.
+
+7. Job count per country
+Display the number of job postings per country.
+
+8. Average salary per country
+Find the average yearly salary per country.
+
+9. Job count by work-from-home status
+Count jobs grouped by job_work_from_home.
+
+10. Average salary by schedule type
+Calculate the average yearly salary for each job schedule type (Full-time, Contract, etc.).
+
+LEVEL 3 - GROUP BY + WHERE
+11. Average salary for remote jobs
+Find the average yearly salary of jobs where job_work_from_home = TRUE.
+
+12. Job count per company (USA only)
+Show number of job postings per company for jobs located in the United States.
+
+13. Average salary for jobs not requiring a degree
+Calculate the average yearly salary where job_no_degree_mention = TRUE.
+
+14. Country-wise average salary for full-time jobs
+Find average yearly salary per country for full-time jobs only.
+
+LEVEL 4 - HAVING (Filtering Groups)
+15. Job titles with high average salary
+Show job titles where average yearly salary > 100,000.
+
+16. Countries with strong job market
+Find countries having more than 50 job postings.
+
+17. Companies with multiple job postings
+List companies that have posted more than 10 jobs.
+
+18. Job titles with sufficient salary data
+Find job titles where at least 20 jobs have salary information.
+
+LEVEL 5 - Analytical / Report-Style Thinking
+19. Top paying job titles
+List job titles with average salary, but show only those with at least 10 postings, ordered by highest average salary.
+
+20. Remote-friendly high-paying roles
+Find job titles where:
+Jobs are work from home
+Average yearly salary > 90,000
+At least 5 postings exist
