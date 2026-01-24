@@ -1,16 +1,233 @@
-Use jobopenings;
+CREATE DATABASE Practice1;
 
-select * from febjobopenings limit 400;
+USE Practice1;
 
-set sql_safe_updates = 0;
-UPDATE febjobopenings
-SET salary_year_avg=null
-WHERE salary_year_avg=0;
-UPDATE febjobopenings
-SET salary_hour_avg=null
-WHERE salary_hour_avg=0;
-UPDATE febjobopenings
-SET job_schedule_type = 'Not Specified'
-where job_schedule_type = '';
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(100),
+    email VARCHAR(100),
+    country VARCHAR(50)
+);
+INSERT INTO customers VALUES
+(1, 'Amit Sharma', 'amit@gmail.com', 'India'),
+(2, 'Sara Khan', 'sara@gmail.com', 'India'),
+(3, 'John Miller', 'john@gmail.com', 'USA'),
+(4, 'Emma Brown', 'emma@gmail.com', 'UK'),
+(5, 'David Lee', 'david@gmail.com', 'USA'),
+(6, 'Ravi Kumar', 'ravi@gmail.com', 'India'),
+(7, 'Sophia Wilson', 'sophia@gmail.com', 'Canada'),
+(8, 'Daniel Taylor', 'daniel@gmail.com', 'USA'),
+(9, 'Neha Verma', 'neha@gmail.com', 'India'),
+(10, 'Michael Scott', 'michael@gmail.com', 'USA'),
+(11, 'Priya Singh', 'priya@gmail.com', 'India'),
+(12, 'Chris Evans', 'chris@gmail.com', 'USA'),
+(13, 'Anjali Mehta', 'anjali@gmail.com', 'India'),
+(14, 'Robert King', 'robert@gmail.com', 'UK'),
+(15, 'Karan Malhotra', 'karan@gmail.com', 'India'),
+(16, 'Laura Adams', 'laura@gmail.com', 'Canada'),
+(17, 'Arjun Patel', 'arjun@gmail.com', 'India'),
+(18, 'Steve Rogers', 'steve@gmail.com', 'USA'),
+(19, 'Pooja Nair', 'pooja@gmail.com', 'India'),
+(20, 'Olivia Martin', 'olivia@gmail.com', 'Australia');
+
+INSERT INTO customers VALUES
+(21, 'Satyam', 'satyam@gmail.com', 'Ghana');
 
 
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100),
+    category VARCHAR(50),
+    price DECIMAL(10,2)
+);
+INSERT INTO products VALUES
+(101, 'Laptop', 'Electronics', 75000),
+(102, 'Smartphone', 'Electronics', 40000),
+(103, 'Headphones', 'Electronics', 3000),
+(104, 'Office Chair', 'Furniture', 12000),
+(105, 'Desk', 'Furniture', 18000),
+(106, 'Running Shoes', 'Fashion', 5000),
+(107, 'Backpack', 'Fashion', 2500),
+(108, 'Smart Watch', 'Electronics', 15000),
+(109, 'Water Bottle', 'Accessories', 800),
+(110, 'Bluetooth Speaker', 'Electronics', 6000),
+(111, 'Monitor', 'Electronics', 22000),
+(112, 'Keyboard', 'Electronics', 3500),
+(113, 'Mouse', 'Electronics', 1500),
+(114, 'Tablet', 'Electronics', 30000),
+(115, 'Jacket', 'Fashion', 7000),
+(116, 'Sofa', 'Furniture', 55000),
+(117, 'Coffee Table', 'Furniture', 16000),
+(118, 'Power Bank', 'Electronics', 2500),
+(119, 'Sunglasses', 'Accessories', 4500),
+(120, 'Earbuds', 'Electronics', 5000);
+
+INSERT INTO products VALUES
+(121, 'Fan', 'Electronics', 3000);
+
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    product_id INT,
+    order_date DATE,
+    quantity INT,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+INSERT INTO orders VALUES
+(1001, 1, 101, '2024-01-10', 1),
+(1002, 2, 102, '2024-01-11', 2),
+(1003, 3, 103, '2024-01-12', 1),
+(1004, 4, 104, '2024-01-13', 1),
+(1005, 5, 105, '2024-01-14', 1),
+(1006, 6, 106, '2024-01-15', 2),
+(1007, 7, 107, '2024-01-16', 1),
+(1008, 8, 108, '2024-01-17', 1),
+(1009, 9, 109, '2024-01-18', 3),
+(1010, 10, 110, '2024-01-19', 1),
+(1011, 11, 111, '2024-01-20', 1),
+(1012, 12, 112, '2024-01-21', 2),
+(1013, 13, 113, '2024-01-22', 1),
+(1014, 14, 114, '2024-01-23', 1),
+(1015, 15, 115, '2024-01-24', 2),
+(1016, 16, 116, '2024-01-25', 1),
+(1017, 17, 117, '2024-01-26', 1),
+(1018, 18, 118, '2024-01-27', 2),
+(1019, 19, 119, '2024-01-28', 1),
+(1020, 20, 120, '2024-01-29', 1),
+(1021, 1, 103, '2024-01-30', 2),
+(1022, 3, 110, '2024-01-31', 1);
+
+/* List all orders with:
+customer name
+product name
+order date
+quantity
+(INNER JOIN across all three tables). */
+SELECT C.customer_name, P.product_name, O.order_date, O.quantity
+FROM customers AS C
+INNER JOIN orders AS O
+ON C.customer_id = O.customer_id
+INNER JOIN products AS P
+ON O.product_id = P.product_id;
+
+/* Display all customers and their orders (if any).
+Include customers who have never placed an order. */
+SELECT C.customer_name, O.order_id
+FROM customers AS C
+LEFT JOIN orders AS O
+ON C.customer_id = O.customer_id;
+
+-- Find all products that have never been ordered.
+SELECT P.product_name, O.order_id, O.order_date
+FROM products as P
+LEFT JOIN orders AS O
+ON P.product_id = O.product_id
+WHERE O.product_id IS NULL;
+
+/* Show total number of orders per customer
+(include customers with zero orders). */
+SELECT C.customer_name, COUNT(O.order_id) As order_count
+FROM customers As C
+LEFT JOIN orders AS O
+ON C.customer_id = O.customer_id
+GROUP BY C.customer_id;
+
+-- List all orders placed by customers from India, along with product names.
+SELECT O.order_id, C.customer_name, P.product_name
+FROM orders As O
+INNER JOIN products AS P
+ON O.product_id = P.product_id
+INNER JOIN customers AS C
+ON C.customer_id = O.customer_id
+WHERE C.country = 'India';
+
+/* Calculate the total revenue generated by each customer
+(revenue = price × quantity).*/
+SELECT C.customer_name, SUM(P.price*O.quantity) AS revenue
+FROM customers AS C
+INNER JOIN orders AS O
+ON C.customer_id = O.customer_id
+INNER JOIN products AS P
+ON P.product_id = O.product_id
+GROUP BY C.customer_id;
+
+-- Find the top 5 customers by total spending.
+SELECT C.customer_name, SUM(P.price*O.quantity) AS revenue
+FROM customers AS C
+INNER JOIN orders AS O
+ON C.customer_id = O.customer_id
+INNER JOIN products AS P
+ON P.product_id = O.product_id
+GROUP BY C.customer_id
+ORDER BY revenue DESC LIMIT 5;
+
+-- Show the total quantity sold for each product category.
+SELECT P.category, COUNT(O.product_id) AS quantity_count
+FROM products AS P
+INNER JOIN orders AS O
+ON P.product_id = O.product_id
+GROUP BY P.category;
+
+-- List all orders where the product price is greater than ₹20,000.
+SELECT O.order_id, P.product_name, P.price
+FROM orders AS O
+INNER JOIN products AS P
+ON O.product_id = P.product_id
+WHERE P.price>20000;
+
+-- Find customers who have ordered more than one distinct product.
+SELECT C.customer_name, COUNT(DISTINCT P.product_id) AS products_count
+FROM customers AS C
+INNER JOIN orders AS O
+ON C.customer_id = O.customer_id
+INNER JOIN products AS P
+ON O.product_id = P.product_id
+GROUP BY O.customer_id
+HAVING products_count>1;
+
+-- Find customers who placed exactly one order.
+SELECT C.customer_name
+FROM customers AS C
+JOIN orders AS O
+ON O.customer_id = C.customer_id
+GROUP BY C.customer_id
+HAVING COUNT(O.order_id) = 1;
+
+/* Display each product along with:
+total quantity sold
+show 0 for products never ordered. */
+
+SELECT P.product_name, SUM(O.quantity) as product_quantity
+FROM products AS P
+LEFT JOIN orders AS O
+ON P.product_id = O.product_id
+GROUP BY P.product_id;
+
+-- Find the country-wise total revenue, including countries with no orders.
+SELECT C.country, COALESCE(SUM(O.quantity * P.price), 0) AS revenue
+FROM customers AS C
+LEFT JOIN orders AS O
+ON C.customer_id = O.customer_id
+LEFT JOIN products AS P
+ON O.product_id = P.product_id
+GROUP BY C.country;
+
+/* Find the most frequently ordered product
+(based on total quantity sold). */
+SELECT P.product_name, SUM(O.quantity) AS frequency
+FROM products AS P 
+INNER JOIN orders AS O
+ON O.product_id = P.product_id
+GROUP BY P.product_id
+ORDER BY frequency DESC LIMIT 5;
+
+-- Identify customers who have never ordered Electronics category products.
+SELECT C.customer_name
+FROM customers C
+LEFT JOIN orders O
+ON C.customer_id = O.customer_id
+LEFT JOIN products P
+ON O.product_id = P.product_id
+AND P.category = 'Electronics'
+WHERE P.product_id IS NULL;
