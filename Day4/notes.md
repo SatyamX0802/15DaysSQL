@@ -327,4 +327,4 @@ WHERE c.company_name IS NOT NULL;
 
 ---
 
-📘 *End of Day 4 – SQL Joins Notes*
+*End of Day 4 – SQL Joins Notes*
