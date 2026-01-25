@@ -1,0 +1,54 @@
+Level 1 - Core Joins
+1. List all students with their course names and teacher names.
+(Only students with valid courses & teachers)
+
+2. Display all students and their courses.
+Include students who have not enrolled in any course.
+
+3. Show all courses along with assigned teachers.
+Include courses without teachers.
+
+Level 2 - Filtering + Logic
+4. Find students enrolled after 2022 along with their course & teacher.
+
+5. List all courses that currently have NO students enrolled.
+
+6. Show each teacher and the number of courses they teach.
+Include teachers teaching zero courses.
+
+Level 3 - CROSS JOIN & Analysis
+7. Generate all possible student–course combinations.
+(Display student name and course name)
+Use CROSS JOIN
+
+Level 4 - SELF JOIN (Very Important)
+8. Display employees and their managers’ names.
+Include top-level employees with no manager.
+
+9. Find employees who report directly to the CEO.
+
+Level 5 - Think Like an Analyst
+10. Find students whose course does not have a teacher assigned.
+
+
+------------------------------------------------------------
+
+Level 1 - Core JOIN Practice
+1. List all students with their course name and teacher name.
+2. Display all students, even those not enrolled in any course, along with course name.
+3. Show course name, teacher name, and number of students enrolled in each course.
+4. Find all students taught by “Ms. Verma”.
+Level 2 - Thinking in Relationships
+5. List courses that currently have no students enrolled.
+6. Show students enrolled in courses that run longer than 6 weeks.
+7. Find teachers who are teaching more than one course.
+Level 3 - Advanced JOIN Logic
+8. Generate all possible student-course combinations (regardless of enrollment).
+9. Display students enrolled in Data Science department courses only.
+10. (Self-Join Style Thinking - Prep for Hierarchies)
+Assume students can mentor other students
+(add column mentor_id referencing student_id)
+Write a query to show:
+student name
+mentor name
+(Conceptual self-join — even if you do not run it)
