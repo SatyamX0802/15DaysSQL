@@ -153,12 +153,39 @@ FROM employees AS E
 JOIN dept_avg AS Da
 ON E.department_id=Da.department_id;
 
--- Find departments where the number of employees is greater than 5 (using subquery in FROM).
-
+-- Find departments where the number of employees is greater than 2 (using subquery in FROM).
+SELECT department_id, emp_count
+FROM (SELECT department_id, COUNT(employee_id) AS emp_count
+		FROM employees 
+        GROUP BY department_id
+        HAVING COUNT(employee_id)>2) AS EMP;
 
 -- Show job titles along with the highest salary for each job title.
+SELECT job_title, MAX(salary)
+FROM employees 
+GROUP BY job_title;
 
 -- LEVEL 5: CTEs (WITH Clause)
 -- Using a CTE, find employees whose salary is above their department’s average salary.
+WITH dept_avg AS(
+	SELECT department_id, AVG(salary) AS dept_avg_salary
+    FROM employees
+    GROUP BY department_id
+)
+SELECT E.name, E.salary, D.dept_avg_salary
+FROM employees AS E
+JOIN dept_avg AS D
+ON E.department_id=D.department_id
+WHERE E.salary>D.dept_avg_salary;
 
 -- Create a CTE that calculates total sales per customer, then display customers whose total sales exceed ₹1,00,000.
+WITH total_sales AS (
+	SELECT customer_id, SUM(sale_amount) AS t_sales
+    FROM sales 
+    GROUP BY customer_id
+)
+SELECT C.customer_name, T.t_sales
+FROM customers AS C
+JOIN total_sales AS T
+ON C.customer_id = T.customer_id
+WHERE T.t_sales>100000;
