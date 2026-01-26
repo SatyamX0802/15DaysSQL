@@ -1,0 +1,34 @@
+LEVEL 1: Single-Row Subqueries (Basics)
+1. Find all employees whose salary is greater than the average salary of the company.
+2. Retrieve employees earning the minimum salary in the company.
+3. List employees whose salary is equal to the maximum salary in the IT department.
+4. Find departments where the average salary is higher than the overall company average.
+5. Display employees hired after the earliest hire date in the company.
+
+LEVEL 2: Multi-Row Subqueries (IN, ANY, ALL)
+6. Find employees who work in departments located in India or the United States.
+7. List employees whose salary is higher than ALL salaries of the HR department.
+8. Find employees whose salary is greater than ANY salary in the Sales department.
+9. Retrieve all products that have never been ordered.
+10. Find customers who have placed more than one order.
+
+LEVEL 3: EXISTS & Correlated Subqueries
+11. List all departments that have at least one employee.
+12. Find employees who earn more than the average salary of their own department.
+13. Retrieve employees who do not belong to any department.
+14. Find customers who have never placed an order using EXISTS.
+15. Display products that are ordered by at least one customer from India.
+
+LEVEL 4: Subqueries in SELECT & FROM
+16. Display employee name, salary, and the average salary of their department.
+17. Find departments where the number of employees is greater than 5
+(using subquery in FROM).
+18. Show job titles along with the highest salary for each job title.
+
+LEVEL 5: CTEs (WITH Clause)
+19. Using a CTE, find employees whose salary is above their department’s average salary.
+20. Create a CTE that calculates total sales per customer, then display customers whose total sales exceed ₹1,00,000.
+
+Bonus (Optional Challenge)
+🔹 Rewrite Question 12 using a CTE instead of a correlated subquery.
+🔹 Convert Question 9 using LEFT JOIN instead of a subquery and compare results.
