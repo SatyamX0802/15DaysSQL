@@ -1,0 +1,38 @@
+LEVEL 1: Foundation (Understanding Behavior)
+1. Assign a unique row number to employees within each department ordered by salary (highest first).
+2. Rank employees company-wide based on salary using:
+ROW_NUMBER()
+RANK()
+DENSE_RANK()
+Compare the results.
+3. Display employees along with their salary rank inside their department.
+4. Find employees who share the same salary and show how RANK() and DENSE_RANK() behave for them.
+5. Show employees ordered by hire date and display the previous employee’s hire date.
+
+LEVEL 2: Analytical Thinking
+6. Find the top 2 highest-paid employees per department.
+7. Show employees whose salary is higher than the previous employee in salary order.
+8. Calculate the salary difference between each employee and the previous employee.
+9. Display each employee’s salary and the next higher salary in the company.
+10. Find employees who are ranked exactly 3rd in salary within their department.
+
+LEVEL 3: Real-World Business Problems
+11. Create a company leaderboard showing:
+employee name
+department
+salary
+company rank
+12. Identify employees whose salary is below the department average, but still in the top 3 ranks.
+13. Find employees whose salary is equal to the previous employee’s salary.
+14. For each department, show:
+highest salary
+2nd highest salary
+(using window functions only)
+15. Show employees hired immediately before and after each employee (based on hire date).
+
+LEVEL 4: Advanced / Interview Grade
+16. Remove duplicate employee records based on emp_name and department, keeping only the earliest hired employee.
+17. Find departments where salary gaps between consecutive employees are greater than 20,000.
+18. Using the sales table, rank employees monthly based on total sales.
+19. Identify employees who improved their sales ranking month-over-month.
+20. Find the first employee hired in each department and the most recent hire, in a single query.
