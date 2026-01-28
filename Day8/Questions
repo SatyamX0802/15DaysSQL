@@ -1,0 +1,155 @@
+Question 1: Equality Search Index
+You frequently run this query:
+SELECT *
+FROM janjobopenings
+WHERE job_title_short = 'Data Analyst';
+
+Task
+Use EXPLAIN to observe query behavior
+Create the most appropriate index
+Re-run EXPLAIN and compare:
+type
+rows
+key
+🎯 Focus: single-column index, equality lookup
+
+Question 2: Composite Index (Filter + Filter)
+You need to fetch jobs based on role and location:
+SELECT *
+FROM janjobopenings
+WHERE job_title_short = 'Data Scientist'
+  AND job_country = 'India';
+
+Task
+Decide:
+One composite index OR
+Two separate indexes
+Create the best option
+Verify index usage using EXPLAIN
+
+🎯 Focus: composite index & column order
+
+Question 3: Index on Boolean / Low Cardinality Column
+This query runs very often:
+SELECT COUNT(*)
+FROM janjobopenings
+WHERE job_work_from_home = TRUE;
+
+Task
+Should you create an index on job_work_from_home?
+Try creating it and inspect EXPLAIN
+Decide whether the index is useful or wasteful
+
+🎯 Focus: low cardinality indexing decision
+
+Question 4: Range Query on Date
+You analyze recent job postings:
+SELECT job_title, company_name
+FROM janjobopenings
+WHERE job_posted_date >= '2024-01-15';
+
+Task
+Create an index to optimize this query
+Check if MySQL uses:
+range
+ALL
+Validate using EXPLAIN
+🎯 Focus: range scans and date indexing
+
+Question 5: Sorting + Filtering Performance
+You often execute:
+SELECT job_title, salary_year_avg
+FROM janjobopenings
+WHERE job_country = 'USA'
+ORDER BY salary_year_avg DESC;
+
+Task
+Create an index to minimize sorting cost
+Check Extra column for:
+Using filesort
+Optimize it
+🎯 Focus: index for WHERE + ORDER BY
+
+Question 6: Index for NULL Filtering
+This query checks salary availability:
+SELECT COUNT(*)
+FROM janjobopenings
+WHERE salary_year_avg IS NOT NULL;
+
+Task
+Create an index on salary_year_avg
+Observe if MySQL uses the index
+Analyze whether indexing this column is justified
+🎯 Focus: indexing nullable columns
+
+Question 7: Composite Index with Range Condition
+You need high-paying remote jobs:
+SELECT job_title, company_name
+FROM janjobopenings
+WHERE job_work_from_home = TRUE
+  AND salary_year_avg > 120000;
+
+Task
+Create a composite index
+Decide correct column order
+Check if both conditions are used by the index
+🎯 Focus: equality + range rule
+
+Question 8: LIKE Pattern and Index Usage
+You search jobs containing a skill:
+SELECT *
+FROM janjobopenings
+WHERE job_skills LIKE '%Python%';
+
+Task
+Run EXPLAIN
+Try indexing job_skills
+Analyze why index may or may not be used
+🎯 Focus: leading wildcard and index limitations
+
+Question 9: Index on Grouped Queries
+You generate this report daily:
+SELECT job_country, COUNT(*) AS total_jobs
+FROM janjobopenings
+GROUP BY job_country;
+
+Task
+Create an index to support this query
+Check whether MySQL uses it
+Observe Using temporary or Using index
+🎯 Focus: indexes for GROUP BY
+
+Question 10: Over-Indexing Scenario (Critical Thinking)
+Suppose you create indexes on:
+job_title_short
+job_country
+job_location
+company_name
+salary_year_avg
+job_posted_date
+
+Task
+Identify which indexes are most valuable
+Identify which ones are likely wasteful
+Justify your answer based on:
+Query patterns
+Cardinality
+Write overhead
+🎯 Focus: real-world index strategy
+
+
+-----------------------------------------
+
+How You Should Practice These (IMPORTANT)
+For each question, always do:
+EXPLAIN SELECT ...
+Check:
+type
+key
+rows
+Extra
+
+Then:
+Create index
+Re-run EXPLAIN
+Compare results
